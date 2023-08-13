@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Streaming with Controls</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Video Streaming with Controls</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480" />
+    <div>
+        <button id="upButton"><img src="up_arrow.png" alt="Up" width="30" height="30"></button>
+        <button id="downButton"><img src="down_arrow.png" alt="Down" width="30" height="30"></button>
+        <button id="leftButton"><img src="left_arrow.png" alt="Left" width="30" height="30"></button>
+        <button id="rightButton"><img src="right_arrow.png" alt="Right" width="30" height="30"></button>
+        <button id="shutdownButton">Shutdown Server</button>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#upButton').click(function() {
+                sendButtonPress('up');
+            });
+
+            $('#downButton').click(function() {
+                sendButtonPress('down');
+            });
+
+            $('#leftButton').click(function() {
+                sendButtonPress('left');
+            });
+
+            $('#rightButton').click(function() {
+                sendButtonPress('right');
+            });
+
+            $('#shutdownButton').click(function() {
+                shutdownServer();
+            });
+
+            function sendButtonPress(direction) {
+                $.get(`/button_press/${direction}`);
+            }
+
+            function shutdownServer() {
+                $.ajax({
+                    url: '/shutdown',
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
