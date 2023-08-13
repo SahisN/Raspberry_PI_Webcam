@@ -33,7 +33,19 @@ def video_feed():
 
 @app.route("/button_press/<direction>")
 def button_press(direction):
-    print(f"Button pressed: {direction}")
+    # print(f"Button pressed: {direction}")
+    if direction == "up":
+        print("moving up")
+
+    elif direction == "down":
+        print("moving down")
+
+    elif direction == "right":
+        print("moving right")
+
+    elif direction == "left":
+        print("moving left")
+
     return "OK"
 
 

@@ -3,15 +3,35 @@
 <head>
     <title>Video Streaming with Controls</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .d-pad {
+            display: grid;
+            grid-template-columns: auto 50px auto;
+            grid-template-rows: 50px auto 50px;
+            grid-gap: 10px;
+            justify-content: center;
+            align-content: center;
+            height: 100vh; /* Adjust as needed */
+        }
+        .d-pad button {
+            width: 50px;
+            height: 50px;
+        }
+        .center-button {
+            grid-column: 2;
+            grid-row: 2;
+        }
+    </style>
 </head>
 <body>
     <h1>Video Streaming with Controls</h1>
-    <img src="{{ url_for('video_feed') }}" width="640" height="480" />
+    <img src="{{ url_for('video_feed') }}" style="transform: scaleY(-1); -webkit-transform: scaleY(-1);" width="640" height="480" />
+
     <div>
-        <button id="upButton"><img src="up_arrow.png" alt="Up" width="30" height="30"></button>
-        <button id="downButton"><img src="down_arrow.png" alt="Down" width="30" height="30"></button>
-        <button id="leftButton"><img src="left_arrow.png" alt="Left" width="30" height="30"></button>
-        <button id="rightButton"><img src="right_arrow.png" alt="Right" width="30" height="30"></button>
+        <button id="upButton"><img src="../static/up.png" alt="Up" width="30" height="30"></button>
+        <button id="downButton"><img src="../static/down.png" alt="Down" width="30" height="30"></button>
+        <button id="leftButton"><img src="../static/left.png" alt="Left" width="30" height="30"></button>
+        <button id="rightButton"><img src="../static/right.png" alt="Right" width="30" height="30"></button>
         <button id="shutdownButton">Shutdown Server</button>
     </div>
     <script>
