@@ -36,20 +36,38 @@
     </div>
     <script>
         $(document).ready(function() {
+            var xValue = 90;
+            var yValue = 90;
+            console.log('setting it back to zero')
+
             $('#upButton').click(function() {
                 sendButtonPress('up');
+                if(yValue > 0)
+                {
+                    yValue -= 5
+                }
+                
             });
 
             $('#downButton').click(function() {
                 sendButtonPress('down');
+                if(yValue < 170) {
+                    yValue += 5
+                }
             });
 
             $('#leftButton').click(function() {
                 sendButtonPress('left');
+                if(xValue > 0) {
+                    xValue -= 5
+                }
             });
 
             $('#rightButton').click(function() {
                 sendButtonPress('right');
+                if(xValue < 170) {
+                    xValue += 5
+                }
             });
 
             $('#shutdownButton').click(function() {
@@ -57,7 +75,7 @@
             });
 
             function sendButtonPress(direction) {
-                $.get(`/button_press/${direction}`);
+                $.get(`/button_press/${direction}?x=${xValue}&y=${yValue}`);
             }
 
             function shutdownServer() {
